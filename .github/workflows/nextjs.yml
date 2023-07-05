@@ -1,0 +1,34 @@
+import React from 'react';
+
+const ControllerPage = () => {
+  const sendCommand = async (command) => {
+    try {
+      const response = await fetch('http://your-controller-api-endpoint', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ command }),
+      });
+
+      if (response.ok) {
+        console.log('Command sent successfully');
+      } else {
+        console.error('Failed to send command');
+      }
+    } catch (error) {
+      console.error('Error sending command:', error);
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={() => sendCommand('command1')}>Command 1</button>
+      <button onClick={() => sendCommand('command2')}>Command 2</button>
+      <button onClick={() => sendCommand('command3')}>Command 3</button>
+      <button onClick={() => sendCommand('command4')}>Command 4</button>
+    </div>
+  );
+};
+
+export default ControllerPage;
